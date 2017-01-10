@@ -46,6 +46,11 @@ body {
   border-color: #ffc600;
 }
 
+.full-screen {
+  font-size: 18pt;
+  padding-bottom: 5px;
+}
+
 .player__slider {
   width:10px;
   height:30px;
