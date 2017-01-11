@@ -8,13 +8,22 @@
 
   <script>
     // start with strings, numbers and booleans
+    let age = 100;
+    let age2 = age;
+    console.log(age, age2);
+    age = 200;
+    console.log(age, age2);
 
     // Let's say we have an array
-    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+    const players = ['Wes', 'Steve', 'Kris', 'Poppy'];
 
     // and we want to make a copy of it.
+    const team = players;
+
+    console.log(players, team);
 
     // You might think we can just do something like this:
+    team[3] = 'Lux'
 
     // however what happens when we update that array?
 
@@ -25,6 +34,34 @@
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
+    const team2 = players.slice();
+    console.log(team2);
+
+    team2[3] = 'Duncan'
+    console.log(team2);
+    console.log(players);
+
+    const team3 = [].concat(players);
+    console.log(team3);
+
+    team3[3] = 'Phillip'
+    console.log(team3);
+    console.log(players);
+
+    const team4 = [...players]
+    console.log(team4);
+
+    team4[3] = 'Jason'
+    console.log(team4);
+    console.log(players);
+
+    const team5 = Array.from(players);
+    console.log(team5);
+
+    team5[3] = 'Jason'
+    console.log(team5);
+    console.log(players);
+
 
     // one day
 
@@ -37,15 +74,52 @@
     // The same thing goes for objects, let's say we have a person object
 
     // with Objects
+    const person = {
+        name: 'Steve',
+        number: 89
+    }
 
     // and think we make a copy:
+    const captain = person;
+    captain.number = 232;
+    console.log(captain);
 
     // how do we take a copy instead?
 
+    const captain2 = Object.assign({}, person, { number: 3 })
+    console.log(captain2);
+    console.log(person);
+
     // We will hopefully soon see the object ...spread
+    // const captain3 = {...person}
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    const steve = {
+        name: 'steve',
+        age: 31,
+        social: {
+            twitter: '@stevesmith2609',
+            facebook: 'stevesmith2609'
+        }
+    }
+    console.clear();
+    console.log(steve);
 
+    const dev = Object.assign({}, steve);
+    dev.name = "stevie"
+    console.log(steve);
+    console.log(dev);
+
+    dev.social.twitter = '@twitter';
+    console.log(steve);
+    console.log(dev);
+
+    // A full copy COULD be made by converting to and from JSON, but do you really need it? Is it as good as cloneDeep?
+
+    const dev2 = JSON.parse(JSON.stringify(steve));
+    dev2.social.twitter = '@boomtown';
+    console.log(steve);
+    console.log(dev2);
   </script>
 
 </body>
