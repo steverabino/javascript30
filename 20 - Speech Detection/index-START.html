@@ -29,9 +29,20 @@
     if(e.results[0].isFinal) {
       p = document.createElement('p');
       words.appendChild(p);
+      responder(transcript);
     };
   });
 
+  function responder(transcript) {
+    if(transcript.includes('do you like bacon')) {
+      p = document.createElement('p');
+      p.textContent = "Always bacon! Makes life easy!"
+      p.classList.add('response')
+      words.appendChild(p);
+      p = document.createElement('p');
+      words.appendChild(p);
+    }
+  }
 
   recognition.addEventListener('end', recognition.start);
 
@@ -77,6 +88,10 @@
       bottom: 0;
       border: 1px solid;
       border-color: transparent #efe4e4;
+    }
+
+    .response {
+      color: red;
     }
   </style>
 
